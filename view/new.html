@@ -1,0 +1,36 @@
+<div style="height: 60px; margin:20px 20px;">
+
+<h3 class="d-inline p-2 float-left">{{app}}</h3>
+<a href="#/new"><button class="d-inline btn btn-primary btn-lg float-right"><i class="fas fa-plus-circle"></i> New Medication</button></a>
+
+</div>
+<div class="jumbotron">
+	<form name="itemForm">
+		<input class="form-control" type="text" ng-model="item.name" name="name" placeholder="Name" ng-required="true" ng-minlength="10"/>
+		<input class="form-control" type="text" ng-model="item.orientation" name="orientation" placeholder="Orientation" ng-required="true" />
+		<input class="form-control" type="text" ng-model="item.quantity" name="quantity" placeholder="quantity" />
+		<select class="form-control" ng-model="item.units" ng-options="unit.id as unit.name + '(' + unit.symbol +')' for unit in units | orderBy:'name'">
+			<option value="">---------------</option>
+		</select>
+	</form>
+	<div ng-show="itemForm.name.$dirty" ng-messages="itemForm.name.$error">
+		<div ng-message="required" class="alert alert-danger">
+			Por favor, preencha o campo nome!
+		</div>
+		<div ng-message="minlength" class="alert alert-danger">
+			O campo nome deve ter no mínimo 10 caracteres.
+		</div>
+	</div>
+	<div ng-show="itemForm.orientation.$error.required && itemForm.orientation.$dirty" class="alert alert-danger">
+		Por favor, preencha o campo telefone!
+	</div>
+	
+	<button class="btn btn-primary btn-block" ng-click="add(item)" ng-disabled="itemForm.$invalid">Adicionar Contato</button>
+</div>
+
+<div style="height: 60px; margin:20px 20px;">
+
+
+<a href="#/"><button class="d-inline btn btn-primary btn-lg"><i class="fas fa-long-arrow-alt-left"></i> Back</button></a>
+
+</div>

@@ -14,10 +14,10 @@ var units = [
 ];
 
 var medication = [
-  {id: 1, name: "Aspirine",  orientation: 'cool place', units: units[1]},
-  {id: 2, name: "AAS",  orientation: 'cool place', units: units[3] },
-  {id: 3, name: "Quetiapine",  orientation: 'cool place', units: units[3]}
-  {id: 3, name: "Insulin",  orientation: 'low temperature', units: units[5]}
+  {id: 1, name: "Aspirine",  orientation: 'cool place', quantity: 5, units: units[1]},
+  {id: 2, name: "AAS",  orientation: 'cool place', quantity: 6, units: units[3] },
+  {id: 3, name: "Quetiapine",  orientation: 'cool place', quantity: 1,  units: units[3]},
+  {id: 4, name: "Insulin",  orientation: 'low temperature', quantity: 5, units: units[3]}
 ];
 
 app.use(morgan("dev"));
@@ -38,9 +38,10 @@ app.get('/list', function(req, res) {
   res.json(medication);
 });
 
-app.get('/list/:id', function(req, res) {
+app.get('/edit/:id', function(req, res) {
+
   medication.forEach(function (item) {
-  	if (medication.id == req.params.id) {
+  	if (item.id == req.params.id) {
   		res.json(item);
   		return;
   	}
@@ -52,15 +53,16 @@ app.delete('/list/:id', function(req, res) {
   var todoListRemoved = medication.filter(function(item) {
     return item.id != req.params.id;
   });
+  medication = todoListRemoved;
   res.json(todoListRemoved);
   return;
 });
 
-app.put('/list/:id', function(req, res) {
+app.put('/stock/:id', function(req, res) {
   for (var item in medication) {
      if (medication[item].id == req.params.id) {
         console.log(req.body.id);
-        medication[item].status = status[status.findIndex( x => x.id == req.body.id )];
+        medication[item].units = units[units.findIndex( x => x.id == req.body.id )];
         break; //Stop this loop, we found it!
      }
    }
@@ -68,14 +70,26 @@ app.put('/list/:id', function(req, res) {
   return;
 });
 
+app.put('/list/:id', function(req, res) {
+  for (var item in medication) {
+     if (medication[item].id == req.params.id) {
+        medication[item] = req.body;
+        break; 
+     }
+   }
+  res.json(medication);
+  return;
+});
+
 app.post('/list', function(req, res) {
-  req.body.status = status[status.findIndex( x => x.id == req.body.status )];
+  console.log(req.body);
+  req.body.units = units[units.findIndex( x => x.id == req.body.units )];
   medication.push(req.body);
   res.json(true);
 });
 
-app.get('/status', function(req, res) {
-  res.json(status);
+app.get('/units', function(req, res) {
+  res.json(units);
 });
 
 app.listen(4000);

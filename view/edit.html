@@ -1,0 +1,26 @@
+<div style="height: 60px; margin:20px 20px;">
+
+<h3 class="d-inline p-2 float-left">{{app}}</h3>
+<a href="#/new"><button class="d-inline btn btn-primary btn-lg float-right"><i class="fas fa-plus-circle"></i> New Medication</button></a>
+
+</div>
+<div class="jumbotron">
+	<form name="itemForm">
+		<input class="form-control" type="text" ng-model="item.name" name="name" placeholder="Name" />
+		<input class="form-control" type="text" ng-model="item.orientation" name="orientation" placeholder="Orientation"  />
+		<input class="form-control" type="text" ng-model="item.quantity" name="quantity" placeholder="quantity" />
+		<select class="form-control" ng-model="item.units" ng-options="unit.name for unit in units track by unit.id | orderBy:'name'">
+			<option value="">---------------</option>
+		</select>
+	</form>
+
+	<button class="btn btn-primary btn-block" ng-click="updt(item.id, item)" ng-disabled="itemForm.$invalid">Editar Contato</button>
+</div>
+
+
+<div style="height: 60px; margin:20px 20px;">
+
+
+<a href="#/"><button class="d-inline btn btn-primary btn-lg"><i class="fas fa-long-arrow-alt-left"></i> Back</button></a>
+
+</div>
