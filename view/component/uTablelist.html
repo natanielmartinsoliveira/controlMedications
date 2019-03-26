@@ -1,0 +1,17 @@
+
+  <table class="table table-striped table-hover" style="width:60%; margin:0 auto;">
+	<tr>
+		<th ng-repeat="c in ordered_columns">{{ c.title }}</th>
+	</tr>
+	<tr ng-repeat="item in listTable | filter:filterSearch ">
+		<td width="{{ c.width }}" ng-repeat="c in ordered_columns" dynamic="item[c.title]">{{ item[c.title] }}</td>
+	</tr>
+</table>
+
+
+						
+
+
+
+  
+

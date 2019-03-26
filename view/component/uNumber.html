@@ -1,0 +1,18 @@
+<div class="row" >
+	<div class="col-lg-6">
+        <div class="input-group">
+            <span class="input-group-btn">
+                <button type="button" class="quantity-left-minus btn btn-danger btn-number btn-lg" ng-click="decrement(item, item.quantity)">
+                  <i class="fas fa-minus"></i>
+                </button>
+            </span>
+
+            <input type="text" id="{{uName}}" name="{{uName}}" class="form-control input-number" ng-model="uModel" min="{{ uMin }}" max="{{ uMax }}" >
+            <span class="input-group-btn">
+                <button type="button" class="quantity-right-plus btn btn-success btn-number btn-lg" ng-click="increment(item, item.quantity)">
+                    <i class="fas fa-plus" ></i>
+                </button>
+            </span>
+        </div>
+    </div>
+</div>
