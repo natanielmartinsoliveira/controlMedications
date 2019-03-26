@@ -1,14 +1,9 @@
-app.controller("editmedicationsCtrl", function ($scope, list, units, medicationService, $location, $routeParams) {
+app.controller("editmedicationsCtrl", function ($scope, list, units, metadata, medicationService, $location, $routeParams) {
 
 	$scope.item = list.data;
 	$scope.units = units.data;
 	$scope.app = 'Update';
+    $scope.json = metadata;
 
-	$scope.updt = function (id, item) {
-		console.log(id, item);
-		medicationService.putItem(id, item).success(function (data) {
-			$location.path("/");
-		});
-	};
 	
 });

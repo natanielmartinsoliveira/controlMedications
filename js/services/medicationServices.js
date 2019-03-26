@@ -19,12 +19,189 @@ app.factory("medicationService", function ($http) {
 		return $http.delete("http://localhost:4000/list/"+ id);
 	};
 
-	var _putStock = function (id, item) {
-		return $http.put("http://localhost:4000/stock/"+ id, item);
-	};
-
 	var _putItem = function (id, item) {
 		return $http.put("http://localhost:4000/list/"+ id, item);
+	};
+
+	var _getMetadata = function (reference) {
+
+		if(reference == 'new'){
+
+			var metadata = [{
+			    "form": "itemForm",
+			    "type": "itemgroup",
+			    "children": [{
+			      "type": "itemgroup",
+			      "children": [{
+			        "tooltip": "",
+			        "name": "Name",
+			        "required": "true",
+			        "key": "name",
+			        "of": "itemForm",
+			        "type": "input",
+			        "input_type": "text"
+			      }, {
+			        "tooltip": "",
+			        "name": "Orientation",
+			        "required": "true",
+			        "key": "orientation",
+			        "of": "itemForm",
+			        "type": "input",
+			        "input_type": "text"
+			      },{
+			        "tooltip": "",
+			        "name": "Quantity",
+			        "required": "true",
+			        "key": "quantity",
+			        "of": "itemForm",
+			        "type": "input",
+			        "input_type": "number"
+			      }, {
+			        "tooltip": "",
+			        "name": "New password",
+			        "required": "true",
+			        "key": "units",
+			        "of": "itemForm",
+			        "type": "select",
+			        "input_type": "select"
+			      }, {
+			        "infotext": "Save Form",
+			        "of": "itemForm",
+			        "type": "button",
+			        "color": "primary",
+			        "class": "btn-block btn-lg marginTop-20",
+			        "link": "edit/",
+			        "input_type": "click",
+			        "function":'add'
+			      }]
+			    }]
+			  }];
+
+		}else if(reference == 'edit'){
+
+			var metadata = [{
+			    "form": "itemForm",
+			    "type": "itemgroup",
+			    "children": [{
+			      "type": "itemgroup",
+			      "children": [{
+			        "tooltip": "",
+			        "name": "Name",
+			        "required": "true",
+			        "key": "name",
+			        "of": "itemForm",
+			        "type": "input",
+			        "input_type": "text"
+			      }, {
+			        "tooltip": "",
+			        "name": "Orientation",
+			        "required": "true",
+			        "key": "orientation",
+			        "of": "itemForm",
+			        "type": "input",
+			        "input_type": "text"
+			      },{
+			        "tooltip": "",
+			        "name": "Quantity",
+			        "required": "true",
+			        "key": "quantity",
+			        "of": "itemForm",
+			        "type": "input",
+			        "input_type": "number"
+			      }, {
+			        "tooltip": "",
+			        "name": "Units",
+			        "required": "true",
+			        "key": "units",
+			        "of": "itemForm",
+			        "type": "select",
+			        "input_type": "select"
+			      }, {
+			        "infotext": "Save Form",
+			        "of": "itemForm",
+			        "type": "button",
+			        "color": "primary",
+			        "class": "btn-block btn-lg marginTop-20",
+			        "link": "edit/",
+			        "input_type": "click",
+			        "function" : "upt"
+			      }]
+			    }]
+			  }];
+
+		}else{
+
+			var metadata = [{
+			    "list": "itemList",
+			    "type": "itemgroup",
+			    "children": [{
+			        "tooltip": "",
+			        "name": "#",
+			        "required": "true",
+			        "key": "#",
+			        "of": "itemForm",
+			        "type": "text",
+			        "input_type": "text"
+			      },{
+			        "tooltip": "",
+			        "name": "Name",
+			        "required": "true",
+			        "key": "name",
+			        "of": "itemForm",
+			        "type": "text",
+			        "input_type": "text"
+			      }, {
+			        "tooltip": "",
+			        "name": "Orientation",
+			        "required": "true",
+			        "key": "orientation",
+			        "of": "itemForm",
+			        "type": "text",
+			        "input_type": "text"
+			      },{
+			        "tooltip": "",
+			        "name": "Quantity",
+			        "required": "true",
+			        "key": "quantity",
+			        "of": "itemForm",
+			        "type": "number",
+			        "input_type": "number"
+			      }, {
+			        "tooltip": "",
+			        "name": "Units",
+			        "required": "true",
+			        "key": "units",
+			        "of": "itemForm",
+			        "type": "text",
+			        "input_type": "text"
+			      }, {
+			        "infotext": "",
+			        "icon" : "fa-pen-square",
+			        "of": "itemForm",
+			        "type": "button",
+			        "color": "success",
+			        "class": "",
+			        "parentStyle" : "padding:0; padding-top:15px;",
+			        "link": "edit/",
+			        "input_type": "click",
+			        "function" : "upt"
+			       }, {
+			        "infotext": "",
+			        "icon" : "fa-trash",
+			        "of": "itemForm",
+			        "type": "button",
+			        "color": "danger",
+			        "class": "",
+			        "link": "",
+			        "parentStyle" : "padding:0; padding-top:15px;",
+			        "input_type": "click",
+			        "function" : "del"
+			      }]
+			  }];
+
+		}
+
+		return metadata;
 	};
 
 	return {
@@ -34,7 +211,7 @@ app.factory("medicationService", function ($http) {
 		getUnits: _getUnits,
 		saveItem: _saveItem,
 		deleteItem: _deleteItem,
-		putStock: _putStock,
-		putItem: _putItem
+		putItem: _putItem,
+		getMetadata : _getMetadata
 	};
 });

@@ -8,19 +8,25 @@ app.config(function ($routeProvider) {
 			},
 			units: function (medicationService) {
 				return medicationService.getUnits();
+			},
+			metadata: function (medicationService) {
+				return medicationService.getMetadata();
 			}
 		}
 	});
 
 	$routeProvider.when("/new", {
 		templateUrl: "view/new.html",
-		controller: "medicationsCtrl",
+		controller: "newmedicationsCtrl",
 		resolve: {
 			list: function (medicationService) {
 				return medicationService.getItem();
 			},
 			units: function (medicationService) {
 				return medicationService.getUnits();
+			},
+			metadata: function (medicationService) {
+				return medicationService.getMetadata('new');
 			}
 		}
 	});
@@ -34,9 +40,13 @@ app.config(function ($routeProvider) {
 			},
 			units: function (medicationService) {
 				return medicationService.getUnits();
+			},
+			metadata: function (medicationService) {
+				return medicationService.getMetadata('edit');
 			}
 		}
 	});
+
 
 	$routeProvider.when("/delete/:id", {
 		controller: "medicationsCtrl",
@@ -46,6 +56,9 @@ app.config(function ($routeProvider) {
 			},
 			units: function (medicationService) {
 				return medicationService.getUnits();
+			},
+			metadata: function (medicationService) {
+				return medicationService.getMetadata();
 			}
 		}
 	});
