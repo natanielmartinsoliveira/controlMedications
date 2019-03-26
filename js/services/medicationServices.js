@@ -75,6 +75,30 @@ app.factory("medicationService", function ($http) {
 			        "function":'add'
 			      }]
 			    }]
+			  },{
+			    "list": "itemList",
+			    "page": "Medication - Control",
+			    "type": "itemgroup",
+			    "children": [{
+			        "infotext": "Medication control",
+			        "name": "text",
+			        "required": "true",
+			        "key": "#",
+			        "of": "itemForm",
+			        "class": "d-inline p-2 col-md-2",
+			        "type": "header",
+			        "input_type": "text"
+			      }, {
+			        "infotext": " New Medication",
+			        "icon" : "fa-plus",
+			        "of": "itemForm",
+			        "type": "button",
+			        "color": "primary",
+			        "class": "btn-lg float-right",
+			        "link": "new",
+			        "parentStyle" : "padding:0; padding-top:15px;",
+			        "input_type": "click"
+			      }]
 			  }];
 
 		}else if(reference == 'edit'){
@@ -127,6 +151,30 @@ app.factory("medicationService", function ($http) {
 			        "function" : "upt"
 			      }]
 			    }]
+			  },{
+			    "list": "itemList",
+			    "page": "Medication - Control",
+			    "type": "itemgroup",
+			    "children": [{
+			        "infotext": "Medication control",
+			        "name": "text",
+			        "required": "true",
+			        "key": "#",
+			        "of": "itemForm",
+			        "class": "d-inline p-2 col-md-2",
+			        "type": "header",
+			        "input_type": "text"
+			      }, {
+			        "infotext": " New Medication",
+			        "icon" : "fa-plus",
+			        "of": "itemForm",
+			        "type": "button",
+			        "color": "primary",
+			        "class": "btn-lg float-right",
+			        "link": "/new",
+			        "parentStyle" : "padding:0; padding-top:15px;",
+			        "input_type": "click"
+			      }]
 			  }];
 
 		}else{
@@ -196,6 +244,40 @@ app.factory("medicationService", function ($http) {
 			        "parentStyle" : "padding:0; padding-top:15px;",
 			        "input_type": "click",
 			        "function" : "del"
+			      }]
+			  },{
+			    "list": "itemList",
+			    "page": "Medication - Control",
+			    "type": "itemgroup",
+			    "children": [{
+			        "infotext": "Medication control",
+			        "name": "text",
+			        "required": "true",
+			        "key": "#",
+			        "of": "itemForm",
+			        "class": "d-inline p-2 col-md-2",
+			        "type": "header",
+			        "input_type": "text"
+			      },{
+			        "tooltip": "",
+			        "name": "Name",
+			        "required": "true",
+			        "key": "name",
+			        "of": "itemForm",
+			        "type": "input",
+			        "style":"margin-left: 40px;",
+			        "class": "d-inline p-2 col-md-2",
+			        "input_type": "text"
+			      }, {
+			        "infotext": " New Medication",
+			        "icon" : "fa-plus",
+			        "of": "itemForm",
+			        "type": "button",
+			        "color": "primary",
+			        "class": "btn-lg float-right",
+			        "link": "new",
+			        "parentStyle" : "padding:0; padding-top:15px;",
+			        "input_type": "click"
 			      }]
 			  }];
 
