@@ -3,7 +3,7 @@ app.controller("medicationsCtrl", function ($scope, list, metadata, units, medic
 	$scope.list = list.data;
 	$scope.listTable = list.data;
 	$scope.units = units.data;
-    $scope.json = metadata;
+    $scope.json = metadata.list;
 
 	// i.e. the rows
 	if($scope.listTable){

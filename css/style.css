@@ -20,3 +20,10 @@ h3 {
 hr {
 	border-color: #999;
 }
+
+
+@media only screen and (min-width: 900px) {
+    .table-dbpanel{
+    	width: 60%;
+	}
+}

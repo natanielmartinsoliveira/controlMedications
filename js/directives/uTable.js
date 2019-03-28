@@ -9,10 +9,11 @@ app.directive('uTable', function (RecursionHelper) {
       panelitems: '=',
       data: '=',
       units:'=',
-      filterSearch:'='
+      filterSearch:'=',
+      handler:'='
     },
     template: " " +
-      "<u-trtd panelitems='panelitems' data='data' units='units' filter-search='filterSearch' >" +
+      "<u-trtd panelitems='panelitems' data='data' units='units' filter-search='filterSearch' handler='handler' >" +
       "</u-trtd>" ,
     compile: function(element) {
       return RecursionHelper.compile(element, function(scope, iElement, iAttrs, controller, transcludeFn) {});
@@ -39,7 +40,8 @@ app.directive('uTrtd', function (RecursionHelper) {
       panelitems: '=panelitems',
       datatr: '=data',
       units:'=',
-      filterSearch: '='
+      filterSearch: '=',
+      handler:'='
     },
     controller: function($scope, medicationService, $location) {
 
@@ -54,14 +56,23 @@ app.directive('uTrtd', function (RecursionHelper) {
           });
         };
 
+        $scope.select = function (id) {
+
+          $scope.handler.listTable.forEach(function (item) {
+            if (item.id == id) {
+                $scope.handler.item_selecionado(item);
+            } 
+          });
+        };
+
     },
-    template: "<table class='table table-striped table-hover' style='width:60%; margin:0 auto;'>"+
+    template: "<table class='table table-striped table-hover ' style='margin:0 auto;'>"+
          '<tr >'+
             '<th ng-repeat="item in panelitems.children">' +
             '{{item.name}}' +
             '</th>'+
           "</tr>"+  
-          '<tr ng-repeat="line in datatr | filter : filterSearch track by line.id " >'+
+          '<tr ng-repeat="line in datatr | filter : filterSearch track by $index " ng-click="select(line.id)" >'+
             '<td ng-repeat="item in panelitems.children" style="{{item.parentStyle}}">' +
             '<div ng-if="item.type == ' + "'input'" + '">' +
             '<u-text u-type="{{item.input_type}}" u-model="line[item.key]" u-name="{{item.key}}" placeholder={{item.name}}></u-text>' +

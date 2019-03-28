@@ -6,7 +6,9 @@ app.directive('uButton', function () {
       uColor:'@',
       uClass:'@', 
       uStyle:'@', 
-      uLink:'@'
+      uLink:'@',
+      uType:'@',
+      uDisable:'='
     },
     controller: ['$scope', '$http', '$location', function($scope, $http, $location) {
       $scope.linkButton = function (link) {
@@ -20,6 +22,6 @@ app.directive('uButton', function () {
       });
     },
     transclude : true,
-    template:'<button class="btn btn-{{ uColor }} {{ uClass }}" style="{{ uStyle }}" ng-transclude></button>'    
+    template:'<button class="btn btn-{{ uColor }} {{ uClass }}" type="{{uType}}" style="{{ uStyle }}" ng-disabled="uDisable" ng-transclude></button>'    
   }
 });

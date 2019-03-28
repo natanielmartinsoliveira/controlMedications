@@ -1,6 +1,6 @@
 app.directive("uAlert", function () {
 	return {
-		templateUrl: "view/alert.html",
+		templateUrl: "view/component/alert.html",
 		replace: true,
 		restrict: "AE",
 		scope: {

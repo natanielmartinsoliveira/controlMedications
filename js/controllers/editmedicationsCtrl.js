@@ -3,7 +3,8 @@ app.controller("editmedicationsCtrl", function ($scope, list, units, metadata, m
 	$scope.item = list.data;
 	$scope.units = units.data;
 	$scope.app = 'Update';
-    $scope.json = metadata;
+	console.log(metadata);
+    $scope.json = metadata.edit;
 
 	
 });

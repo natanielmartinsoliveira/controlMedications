@@ -8,7 +8,8 @@ app.directive('uText', function () {
       uClass:'@', 
       uLink:'@',
       uText:'@',
-      uModel:'='
+      uModel:'=', 
+      uRequired:'@'
     },
     controller: function ($scope, $rootScope) {
         $scope.filterSearchfn = function (varfn) {
@@ -16,11 +17,28 @@ app.directive('uText', function () {
         };
     },
     link: function(scope, element, attr, controller) {
-        element.bind('keyup', function (e) {
-          scope.filterSearchfn(scope.uModel);
-        });
+
+       if(scope.uName=="filterSearch"){
+
+          var input = document.querySelector('input');
+
+          input.addEventListener('focus', function(e) {
+            scope.filterSearchfn(scope.uModel);
+          });
+          input.addEventListener('keyup', function(e) {
+            scope.filterSearchfn(scope.uModel);
+          });
+
+          input.addEventListener('focusout', function(e) {
+            if(scope.uModel == ''){
+              scope.filterSearchfn('');
+            }
+          });
+
+       }
+        
     },
     transclude : true,
-    template:'<input type="{{ uType }}" id="{{ uName }}" name="{{ uName }}" class="form-control {{ uClass }}" ng-model="uModel" placeholder="{{ uName }}">'    
+    template:'<input type="{{ uType }}" id="{{ uName }}" name="{{ uName }}" class="form-control {{ uClass }}" ng-required="uRequired" ng-model="uModel" placeholder="{{ uName }}">'    
   }
 });

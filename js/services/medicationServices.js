@@ -25,11 +25,15 @@ app.factory("medicationService", function ($http) {
 
 	var _getMetadata = function (reference) {
 
-		if(reference == 'new'){
+		var metadata = {};
 
-			var metadata = [{
-			    "form": "itemForm",
+		var metadataNew = [{
+			    "component": "itemForm",
 			    "type": "itemgroup",
+			    "component_type": "form",
+			    "visible_panel" : 'false',
+			    "name_parent" : 'Novo Medicamento',
+			    "id" : 'panel_1',
 			    "children": [{
 			      "type": "itemgroup",
 			      "children": [{
@@ -58,7 +62,7 @@ app.factory("medicationService", function ($http) {
 			        "input_type": "number"
 			      }, {
 			        "tooltip": "",
-			        "name": "New password",
+			        "name": "Units",
 			        "required": "true",
 			        "key": "units",
 			        "of": "itemForm",
@@ -67,7 +71,7 @@ app.factory("medicationService", function ($http) {
 			      }, {
 			        "infotext": "Save Form",
 			        "of": "itemForm",
-			        "type": "button",
+			        "type": "submit",
 			        "color": "primary",
 			        "class": "btn-block btn-lg marginTop-20",
 			        "link": "edit/",
@@ -76,7 +80,7 @@ app.factory("medicationService", function ($http) {
 			      }]
 			    }]
 			  },{
-			    "list": "itemList",
+			    "component": "itemList",
 			    "page": "Medication - Control",
 			    "type": "itemgroup",
 			    "children": [{
@@ -101,11 +105,14 @@ app.factory("medicationService", function ($http) {
 			      }]
 			  }];
 
-		}else if(reference == 'edit'){
 
-			var metadata = [{
-			    "form": "itemForm",
+			  var metadataEdit = [{
+			    "component": "itemForm",
 			    "type": "itemgroup",
+			    "component_type": "form",
+			    "visible_panel" : 'false',
+			    "name_parent" : 'Editar Medicamento',
+			    "id" : 'panel_2',
 			    "children": [{
 			      "type": "itemgroup",
 			      "children": [{
@@ -152,7 +159,7 @@ app.factory("medicationService", function ($http) {
 			      }]
 			    }]
 			  },{
-			    "list": "itemList",
+			    "component": "itemList",
 			    "page": "Medication - Control",
 			    "type": "itemgroup",
 			    "children": [{
@@ -177,11 +184,13 @@ app.factory("medicationService", function ($http) {
 			      }]
 			  }];
 
-		}else{
-
-			var metadata = [{
-			    "list": "itemList",
+			  var metadataList = [{
+			    "component": "itemList",
 			    "type": "itemgroup",
+			    "component_type": "grid",
+			    "visible_panel" : 'true',
+			    "name_parent" : 'Lista de dados',
+			    "id" : 'panel_3',
 			    "children": [{
 			        "tooltip": "",
 			        "name": "#",
@@ -246,7 +255,60 @@ app.factory("medicationService", function ($http) {
 			        "function" : "del"
 			      }]
 			  },{
-			    "list": "itemList",
+			    "component": "itemList",
+			    "page": "Medication - Control",
+			    "type": "itemgroup",
+			    "children": [{
+			        "infotext": "Medication control",
+			        "name": "text",
+			        "required": "true",
+			        "key": "#",
+			        "of": "itemForm",
+			        "class": "d-inline p-2 col-md-2",
+			        "type": "header",
+			        "input_type": "text"
+			      },{
+			        "tooltip": "",
+			        "name": "Name",
+			        "required": "true",
+			        "key": "name",
+			        "of": "itemForm",
+			        "type": "input",
+			        "style":"margin-left: 40px;",
+			        "class": "d-inline p-2 col-md-2",
+			        "input_type": "text"
+			      }, {
+			        "infotext": " New Medication",
+			        "icon" : "fa-plus",
+			        "of": "itemForm",
+			        "type": "button",
+			        "color": "primary",
+			        "class": "btn-lg float-right",
+			        "link": "new",
+			        "parentStyle" : "padding:0; padding-top:15px;",
+			        "input_type": "click"
+			      }]
+			  }];
+
+		if(reference == 'new'){
+
+			metadata['new'] = metadataNew;	
+
+		}else if(reference == 'edit'){
+
+			metadata['edit'] = metadataEdit;
+
+		}else if(reference == 'list'){
+
+			metadata['list'] = metadataList;
+
+		}else{
+
+			metadata['new'] = metadataNew;
+			metadata['edit'] = metadataEdit;
+			metadata['list'] = metadataList;
+			metadata['header'] = [{
+			    "component": "itemList",
 			    "page": "Medication - Control",
 			    "type": "itemgroup",
 			    "children": [{

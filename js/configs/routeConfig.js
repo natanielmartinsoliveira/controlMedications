@@ -1,5 +1,22 @@
 app.config(function ($routeProvider) {
+
 	$routeProvider.when("/", {
+		templateUrl: "view/index.html",
+		controller: "panelmedicationsCtrl",
+		resolve: {
+			list: function (medicationService) {
+				return medicationService.getItem();
+			},
+			units: function (medicationService) {
+				return medicationService.getUnits();
+			},
+			metadata: function (medicationService) {
+				return medicationService.getMetadata();
+			}
+		}
+	});
+
+	$routeProvider.when("/list", {
 		templateUrl: "view/list.html",
 		controller: "medicationsCtrl",
 		resolve: {
@@ -10,7 +27,7 @@ app.config(function ($routeProvider) {
 				return medicationService.getUnits();
 			},
 			metadata: function (medicationService) {
-				return medicationService.getMetadata();
+				return medicationService.getMetadata('list');
 			}
 		}
 	});

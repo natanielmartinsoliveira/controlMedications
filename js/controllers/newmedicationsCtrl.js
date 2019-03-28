@@ -3,7 +3,8 @@ app.controller("newmedicationsCtrl", function ($scope, list, units, metadata, me
 	$scope.item = list.data;
 	$scope.units = units.data;
   $scope.listTable = list.data;
-  $scope.json = metadata;
+  	
+  $scope.json = metadata.new;
   $scope.listTable.forEach(function(item){ item.units = item.units.name; });
   $scope.new = {'name':null, 'orientation':null, 'quantity':null, 'units':null};
 

@@ -72,7 +72,7 @@ app.put('/stock/:id', function(req, res) {
 });
 
 app.put('/list/:id', function(req, res) {
-
+console.log(req.body,'put');
   for (var item in medication) {
      if (medication[item].id == req.params.id) {
         medication[item] = req.body;
@@ -85,7 +85,7 @@ app.put('/list/:id', function(req, res) {
 
 app.post('/list', function(req, res) {
   console.log(req.body);
-  req.body.units = units[units.findIndex( x => x.id == req.body.units )];
+  //req.body.units = units[units.findIndex( x => x.id == req.body.units )];
   medication.push(req.body);
   res.json(true);
 });
