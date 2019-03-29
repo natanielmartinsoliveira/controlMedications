@@ -1,5 +1,5 @@
 
-app.directive('uDbpanel', function( $parse, $timeout, $compile, store) {
+app.directive('uDbpanel', function( $parse, $timeout, $compile, store, $animate) {
   return {
     restrict: "E",
     replace: true,
@@ -77,7 +77,7 @@ app.directive('uDbpanel', function( $parse, $timeout, $compile, store) {
 
 
     },link:function(scope, element, attrs){
-      $scope.handler.open('list');
+      scope.handler.open('list');
     }
   };
 });

@@ -48,7 +48,7 @@ app.directive('uTrtd', function (RecursionHelper) {
       $scope.del = function (id) {
           $scope.datatr.forEach(function (item) {
             if (item.id == id) {
-              medicationService.deleteItem(item.id).success(function (data) {
+              medicationService.deleteItem(item.id).then(function (data) {
                 $scope.datatr = data;
                 location.reload(); 
               });
@@ -60,7 +60,7 @@ app.directive('uTrtd', function (RecursionHelper) {
 
           $scope.handler.listTable.forEach(function (item) {
             if (item.id == id) {
-                $scope.handler.item_selecionado(item);
+                $scope.handler.item_selecionado(angular.copy(item));
             } 
           });
         };

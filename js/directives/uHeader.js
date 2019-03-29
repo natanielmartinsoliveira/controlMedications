@@ -49,7 +49,7 @@ app.directive('uHeader', function(RecursionHelper) {
     link: function(scope, element, attr, controller) {
       //scope.handler.add('new');
       
-      scope.handler.open('list');
+     // scope.handler.open('list');
 
     },
     template: '<div ng-repeat="item in items.children" class="d-inline">' +

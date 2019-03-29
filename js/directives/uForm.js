@@ -27,15 +27,19 @@ app.directive('uForm', function(RecursionHelper) {
     controller: function($scope, medicationService, $location, $window) {
 
       $scope.updt = function (id, item) {
-        medicationService.putItem(id, item).success(function (data) {
+        medicationService.putItem(id, item).then(function (data) {
+          alert('Alterado com Sucesso');
           $location.path("/");
           $scope.handler.open('list');
+          $window.location.reload();
         });
+
       };
       $scope.add = function (item) {
 
-        medicationService.saveItem(item).success(function (data) {
+        medicationService.saveItem(item).then(function (data) {
           delete $scope.task;
+          alert('Gravado com Sucesso');
           $scope.itemForm.$setPristine();
           $location.path("/");
           $scope.handler.open('list');

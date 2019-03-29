@@ -21,7 +21,7 @@ app.directive('uNumber', function () {
              $scope.list.forEach(function (line) {
              if(line.id == id ){
                 line.quantity = quantity + 1;
-                medicationService.putItem(id, line).success(function (data) {
+                medicationService.putItem(id, line).then(function (data) {
             });
              }
           });
@@ -33,7 +33,7 @@ app.directive('uNumber', function () {
              if(line.id == id ){
                 if(quantity>0){
                   line.quantity = quantity - 1;
-                  medicationService.putItem(id, line).success(function (data) {
+                  medicationService.putItem(id, line).then(function (data) {
                   });
                 }
              }
